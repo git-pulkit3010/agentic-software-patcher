@@ -1,0 +1,11 @@
+Patch Bulletin 2025-Q3-SEC
+
+Patch 4.8.1 includes critical security fixes across multiple Linux-based platforms. Notably, this update addresses CVE-2025-54321 affecting the sudo utility and CVE-2025-12345 affecting OpenSSH.
+
+Systems running OpenSSH 8.2 are vulnerable to a buffer overflow during authentication packet processing. This issue is exploitable remotely and requires immediate attention. The patch eliminates the overflow condition and has been tested on OpenBSD and RHEL-based distributions.
+
+CVE-2025-54321 permits unauthorized privilege escalation through faulty sudoers file parsing. This flaw is present in multiple enterprise distributions, including Ubuntu 22.04 and Debian 11. The fix introduces stricter parsing enforcement and is recommended for all production deployments.
+
+Apache HTTP Server 2.4.54 is also affected by a race condition leading to a use-after-free state (CVE-2025-90876). While this is less severe, it can cause instability under high concurrency. A soft restart is required after patching Apache.
+
+Patch 4.8.1 requires a full system reboot for OpenSSH and sudo components to apply cleanly. Services should be validated after restart to ensure configuration integrity.

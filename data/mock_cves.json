@@ -1,0 +1,23 @@
+[
+  {
+    "id": "CVE-2025-12345",
+    "description": "A buffer overflow vulnerability exists in OpenSSH version 8.2 when handling specially crafted authentication packets. This can lead to arbitrary code execution on the remote system.",
+    "severity": "high",
+    "affected_software": ["OpenSSH 8.2", "OpenBSD 6.6"],
+    "published_date": "2025-06-15"
+  },
+  {
+    "id": "CVE-2025-54321",
+    "description": "A privilege escalation flaw was discovered in the sudo utility, allowing users with restricted access to gain root privileges due to a misconfiguration in sudoers policy parsing.",
+    "severity": "critical",
+    "affected_software": ["Ubuntu 22.04", "Debian 11"],
+    "published_date": "2025-06-30"
+  },
+  {
+    "id": "CVE-2025-90876",
+    "description": "In Apache HTTP Server 2.4.54, a race condition during connection teardown can result in use-after-free memory corruption, potentially leading to server crash or remote code execution.",
+    "severity": "medium",
+    "affected_software": ["Apache HTTP Server 2.4.54"],
+    "published_date": "2025-07-02"
+  }
+]
