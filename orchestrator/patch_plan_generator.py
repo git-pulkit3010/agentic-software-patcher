@@ -1,8 +1,15 @@
+# backend/orchestrator/patch_plan_generator.py - Enhanced for Phase 3
+
 from agents.patch_planner import PatchPlannerAgent
 from agents.rag_retriever import RAGRetrieverAgent
 from agents.risk_assessor import RiskAssessorAgent
 from agents.llm_reasoner import LLMReasoningAgent
-
+from agents.patch_scheduler import PatchSchedulerAgent
+from agents.auditor import AuditorAgent
+# Phase 3 imports
+from agents.human_approval_agent import HumanApprovalAgent
+from agents.explainer_agent import ExplainerAgent
+from agents.audit_logger_agent import AuditLoggerAgent
 
 class PatchPlanGenerator:
     def __init__(self, use_llm=False):
@@ -14,8 +21,18 @@ class PatchPlanGenerator:
         self.use_llm = use_llm
         self.llm_reasoner = LLMReasoningAgent() if use_llm else None
         self.assessor = RiskAssessorAgent(use_llm=use_llm, llm_reasoner=self.llm_reasoner)
+        
+        # Phase 2 agents
+        self.scheduler = PatchSchedulerAgent()
+        self.auditor = AuditorAgent()
+        
+        # Phase 3 agents
+        self.approval_agent = HumanApprovalAgent()
+        self.explainer_agent = ExplainerAgent()
+        self.audit_logger = AuditLoggerAgent()
 
-    def generate_patch_plan(self):
+    def generate_patch_plan(self, create_approval_request=False):
+        print("[PatchPlanGenerator] === PHASE 1: Patch Identification & Risk Assessment ===")
         print("[PatchPlanGenerator] Step 1: Get raw CVEs and vendor notes")
         patch_inputs = self.planner.run()
 
@@ -28,7 +45,41 @@ class PatchPlanGenerator:
         # Attach RAG results (optional)
         vendor_summary = self.rag.query("Summarize all vendor patch priorities")
 
-        return {
+        print("[PatchPlanGenerator] === PHASE 2: Scheduling & Coordination ===")
+        print("[PatchPlanGenerator] Step 4: Schedule patches to systems")
+        scheduled_patches = self.scheduler.run(patch_risks)
+
+        print("[PatchPlanGenerator] Step 5: Add compliance and audit metadata")
+        final_patch_plan = self.auditor.run(scheduled_patches)
+
+        # Add Phase 1 results to final plan
+        final_patch_plan["vendor_summary"] = vendor_summary
+        final_patch_plan["phase_1_results"] = {
             "patch_risks": patch_risks,
-            "vendor_summary": vendor_summary
+            "vendor_policies": patch_inputs["vendor_policies"]
         }
+        
+        # Phase 3: Prepare for human approval
+        if create_approval_request:
+            print("[PatchPlanGenerator] === PHASE 3: Human Approval Preparation ===")
+            print("[PatchPlanGenerator] Step 6: Generate explanations")
+            explanations = self.explainer_agent.generate_patch_plan_summary(final_patch_plan)
+            
+            print("[PatchPlanGenerator] Step 7: Create approval request")
+            approval_id = self.approval_agent.create_approval_request(
+                patch_plan=final_patch_plan,
+                requester="automated_system"
+            )
+            
+            print("[PatchPlanGenerator] Step 8: Log generation event")
+            self.audit_logger.log_patch_plan_generation(final_patch_plan)
+            
+            # Add Phase 3 data to the plan
+            final_patch_plan["phase3_data"] = {
+                "approval_id": approval_id,
+                "explanations": explanations,
+                "phase3_status": "pending_approval"
+            }
+
+        print(f"[PatchPlanGenerator] ✅ Complete patch plan generated with {len(scheduled_patches)} scheduled patches")
+        return final_patch_plan
