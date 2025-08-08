@@ -1,0 +1,17 @@
+{
+  "patch_plan": {
+    "audit_id": "fresh-001",
+    "scheduled_patches": [
+      {
+        "cve_id": "CVE-2025-12345",
+        "target_system": { "name": "Samsung-Ubuntu" },
+        "risk_score": 85,
+        "severity": "high"
+      }
+    ],
+    "plan_metadata": {
+      "generated_at": "2025-08-08T03:40:00",
+      "compliance_summary": { "frameworks_involved": [] }
+    }
+  }
+}

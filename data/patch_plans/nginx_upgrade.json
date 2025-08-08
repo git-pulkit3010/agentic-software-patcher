@@ -1,0 +1,30 @@
+{
+    "package_name": "nginx",
+    "target_version": "1.25.3",
+    "target_systems": ["docker_host"],
+    "pre_checks": [
+      {
+        "command": "docker exec vulnerable_nginx nginx -v",
+        "expect": "1.18.0"
+      }
+    ],
+    "patch_steps": [
+      {
+        "type": "docker",
+        "action": "upgrade",
+        "image": "nginx:1.25.3-alpine",
+        "container_name": "vulnerable_nginx",
+        "ports": ["8080:80"]
+      }
+    ],
+    "post_checks": [
+      {
+        "command": "docker exec vulnerable_nginx nginx -v",
+        "expect": "1.25.3"
+      }
+    ],
+    "rollback": {
+      "image": "nginx:1.18.0-alpine",
+      "command": "docker restart vulnerable_nginx"
+    }
+  }

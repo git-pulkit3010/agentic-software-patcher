@@ -12,7 +12,7 @@ class ApprovalStatus(str, Enum):
     CHANGES_REQUESTED = "changes_requested"
 
 class ApprovalDecision(BaseModel):
-    approval_id: str = Field(..., description="Unique approval request ID")
+    #approval_id: str = Field(..., description="Unique approval request ID")
     decision: ApprovalStatus = Field(..., description="Approval decision")
     approver: str = Field(..., description="Person making the decision")
     comments: Optional[str] = Field(None, description="Comments about the decision")

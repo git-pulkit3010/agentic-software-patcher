@@ -16,6 +16,7 @@ from routers.explanation_router import router as explanation_router
 from agents.human_approval_agent import HumanApprovalAgent
 from agents.explainer_agent import ExplainerAgent
 from agents.audit_logger_agent import AuditLoggerAgent
+from routers.execution_router import router as execution_router
 
 app = FastAPI(
     title="Agentic Patch Management System",
@@ -45,6 +46,7 @@ audit_logger = AuditLoggerAgent()
 # Include Phase 3 routers
 app.include_router(approval_router)
 app.include_router(explanation_router)
+app.include_router(execution_router)
 
 # Existing Pydantic model
 class PatchPlan(BaseModel):

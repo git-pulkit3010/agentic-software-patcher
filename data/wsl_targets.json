@@ -1,0 +1,14 @@
+{
+    "systems": [
+      {
+        "id": "WSL-UBUNTU",
+        "name": "Samsung-Ubuntu",
+        "type": "linux_wsl",
+        "environment": "development",
+        "credentials": {
+          "method": "ssh_localhost",
+          "user": "pulkit3010"
+        }
+      }
+    ]
+  }

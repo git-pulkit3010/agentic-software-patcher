@@ -10,9 +10,11 @@ from agents.auditor import AuditorAgent
 from agents.human_approval_agent import HumanApprovalAgent
 from agents.explainer_agent import ExplainerAgent
 from agents.audit_logger_agent import AuditLoggerAgent
+from agents.patch_executor import PatchExecutor  # Add with other imports
+from datetime import datetime  # Add with other imports
 
 class PatchPlanGenerator:
-    def __init__(self, use_llm=False):
+    def __init__(self, use_llm=False, deploy_mode = 'dry-run'):
         self.planner = PatchPlannerAgent(
             cve_file_path="backend/data/mock_cves.json",
             vendor_notes_dir="backend/data/vendor_notes"
@@ -30,6 +32,9 @@ class PatchPlanGenerator:
         self.approval_agent = HumanApprovalAgent()
         self.explainer_agent = ExplainerAgent()
         self.audit_logger = AuditLoggerAgent()
+        self.deploy_mode = deploy_mode
+        if deploy_mode == 'production':
+            self.executor = PatchExecutor()  # Add this line
 
     def generate_patch_plan(self, create_approval_request=False):
         print("[PatchPlanGenerator] === PHASE 1: Patch Identification & Risk Assessment ===")
@@ -82,4 +87,25 @@ class PatchPlanGenerator:
             }
 
         print(f"[PatchPlanGenerator] ✅ Complete patch plan generated with {len(scheduled_patches)} scheduled patches")
+        # Add this block right before the final return
+        if self.deploy_mode == 'production':
+            print("[PatchPlanGenerator] === DEPLOYMENT PHASE ===")
+            print("[PatchPlanGenerator] Step 9: Validating pre-conditions")
+            for check in final_patch_plan.get("pre_checks", []):
+                result = self.executor._execute_wsl(
+                    system={"credentials": {"user": "root"}},
+                    command=check["command"]
+                )
+                if check.get("expect") and check["expect"] not in result["output"]:
+                    raise ValueError(f"Pre-check failed for {check['command']}")
+            
+            print("[PatchPlanGenerator] Step 10: Executing patches")
+            execution_report = {
+                "timestamp": datetime.now().isoformat(),
+                "steps": self.executor.execute(final_patch_plan),
+                "system": "WSL2-Docker"
+            }
+            final_patch_plan["execution_report"] = execution_report
+            self.audit_logger.log_patch_execution(execution_report)
+            
         return final_patch_plan

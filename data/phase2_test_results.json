@@ -1,0 +1,630 @@
+{
+  "scheduled_patches": [
+    {
+      "cve_id": "CVE-2024-0001",
+      "severity": "critical",
+      "risk_score": 95,
+      "dependency_risk": "high",
+      "rollback_difficulty": "hard",
+      "llm_reasoning": "Critical remote code execution vulnerability",
+      "target_system": {
+        "id": "SYS-001",
+        "name": "Web Server Cluster",
+        "type": "web_server",
+        "environment": "production",
+        "criticality": "high",
+        "maintenance_window": {
+          "day": "sunday",
+          "start_time": "02:00",
+          "end_time": "06:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "web_frontend",
+          "api_gateway"
+        ]
+      },
+      "scheduled_time": "2025-08-02T18:02:30.218229",
+      "estimated_duration": "2-4 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Test patch in staging environment",
+        "Verify monitoring alerts are active"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001",
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "access_controls",
+          "vulnerability_management",
+          "monitoring",
+          "change_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_90_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218561",
+        "audit_id": "ce2138f8-6cdf-4114-97a2-ea8729e4c1bf",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0001",
+      "severity": "critical",
+      "risk_score": 95,
+      "dependency_risk": "high",
+      "rollback_difficulty": "hard",
+      "llm_reasoning": "Critical remote code execution vulnerability",
+      "target_system": {
+        "id": "SYS-002",
+        "name": "Database Primary",
+        "type": "database",
+        "environment": "production",
+        "criticality": "critical",
+        "maintenance_window": {
+          "day": "saturday",
+          "start_time": "01:00",
+          "end_time": "04:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "user_data",
+          "transactions"
+        ]
+      },
+      "scheduled_time": "2025-08-02T01:02:30.218279",
+      "estimated_duration": "2-4 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Coordinate with database team",
+        "Prepare rollback database snapshot",
+        "Schedule on-call engineer availability"
+      ],
+      "rollback_plan": {
+        "method": "automated_snapshot",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001",
+          "HIPAA",
+          "PCI-DSS",
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "assigned_security_responsibility",
+          "security_risk_assessment",
+          "access_controls",
+          "vulnerability_management",
+          "monitoring",
+          "regular_testing",
+          "change_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_30_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218620",
+        "audit_id": "79b3beb0-255a-42e4-9ab8-caf4df838e15",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0001",
+      "severity": "critical",
+      "risk_score": 95,
+      "dependency_risk": "high",
+      "rollback_difficulty": "hard",
+      "llm_reasoning": "Critical remote code execution vulnerability",
+      "target_system": {
+        "id": "SYS-004",
+        "name": "Staging Environment",
+        "type": "staging",
+        "environment": "staging",
+        "criticality": "medium",
+        "maintenance_window": {
+          "day": "weekdays",
+          "start_time": "18:00",
+          "end_time": "08:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "staging_tests",
+          "qa_validation"
+        ]
+      },
+      "scheduled_time": "2025-08-02T07:02:30.218297",
+      "estimated_duration": "2-4 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001"
+        ],
+        "compliance_requirements": [
+          "vulnerability_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "risk_based"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218647",
+        "audit_id": "ba82cca6-148e-4bed-9438-f782cb30c494",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0002",
+      "severity": "high",
+      "risk_score": 78,
+      "dependency_risk": "medium",
+      "rollback_difficulty": "moderate",
+      "llm_reasoning": "Privilege escalation vulnerability in authentication system",
+      "target_system": {
+        "id": "SYS-001",
+        "name": "Web Server Cluster",
+        "type": "web_server",
+        "environment": "production",
+        "criticality": "high",
+        "maintenance_window": {
+          "day": "sunday",
+          "start_time": "02:00",
+          "end_time": "06:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "web_frontend",
+          "api_gateway"
+        ]
+      },
+      "scheduled_time": "2025-08-03T20:02:30.218312",
+      "estimated_duration": "1-3 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Test patch in staging environment",
+        "Verify monitoring alerts are active"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001",
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "access_controls",
+          "vulnerability_management",
+          "monitoring",
+          "change_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_90_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218667",
+        "audit_id": "f87c8b47-dcb0-4c94-ba6c-77bb77095d95",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0002",
+      "severity": "high",
+      "risk_score": 78,
+      "dependency_risk": "medium",
+      "rollback_difficulty": "moderate",
+      "llm_reasoning": "Privilege escalation vulnerability in authentication system",
+      "target_system": {
+        "id": "SYS-002",
+        "name": "Database Primary",
+        "type": "database",
+        "environment": "production",
+        "criticality": "critical",
+        "maintenance_window": {
+          "day": "saturday",
+          "start_time": "01:00",
+          "end_time": "04:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "user_data",
+          "transactions"
+        ]
+      },
+      "scheduled_time": "2025-08-04T01:02:30.218323",
+      "estimated_duration": "1-3 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Coordinate with database team",
+        "Prepare rollback database snapshot",
+        "Schedule on-call engineer availability"
+      ],
+      "rollback_plan": {
+        "method": "automated_snapshot",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001",
+          "HIPAA",
+          "PCI-DSS",
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "assigned_security_responsibility",
+          "security_risk_assessment",
+          "access_controls",
+          "vulnerability_management",
+          "monitoring",
+          "regular_testing",
+          "change_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_30_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218686",
+        "audit_id": "d5b9ff04-08a6-43dc-bd17-604bcb19dd25",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0002",
+      "severity": "high",
+      "risk_score": 78,
+      "dependency_risk": "medium",
+      "rollback_difficulty": "moderate",
+      "llm_reasoning": "Privilege escalation vulnerability in authentication system",
+      "target_system": {
+        "id": "SYS-004",
+        "name": "Staging Environment",
+        "type": "staging",
+        "environment": "staging",
+        "criticality": "medium",
+        "maintenance_window": {
+          "day": "weekdays",
+          "start_time": "18:00",
+          "end_time": "08:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "staging_tests",
+          "qa_validation"
+        ]
+      },
+      "scheduled_time": "2025-08-03T21:02:30.218333",
+      "estimated_duration": "1-3 hours",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "ISO27001"
+        ],
+        "compliance_requirements": [
+          "vulnerability_management",
+          "incident_response"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "risk_based"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218708",
+        "audit_id": "a0909a35-a6f6-45c2-be7d-3f3457fbb0d2",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0003",
+      "severity": "medium",
+      "risk_score": 45,
+      "dependency_risk": "low",
+      "rollback_difficulty": "easy",
+      "llm_reasoning": "Information disclosure vulnerability with limited impact",
+      "target_system": {
+        "id": "SYS-001",
+        "name": "Web Server Cluster",
+        "type": "web_server",
+        "environment": "production",
+        "criticality": "high",
+        "maintenance_window": {
+          "day": "sunday",
+          "start_time": "02:00",
+          "end_time": "06:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "web_frontend",
+          "api_gateway"
+        ]
+      },
+      "scheduled_time": "2025-08-03T23:02:30.218348",
+      "estimated_duration": "30-60 minutes",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Test patch in staging environment",
+        "Verify monitoring alerts are active"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "access_controls",
+          "monitoring",
+          "change_management"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_90_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218723",
+        "audit_id": "f8c80df8-e7a4-491f-b21b-c5e966e29d8f",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0003",
+      "severity": "medium",
+      "risk_score": 45,
+      "dependency_risk": "low",
+      "rollback_difficulty": "easy",
+      "llm_reasoning": "Information disclosure vulnerability with limited impact",
+      "target_system": {
+        "id": "SYS-002",
+        "name": "Database Primary",
+        "type": "database",
+        "environment": "production",
+        "criticality": "critical",
+        "maintenance_window": {
+          "day": "saturday",
+          "start_time": "01:00",
+          "end_time": "04:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "user_data",
+          "transactions"
+        ]
+      },
+      "scheduled_time": "2025-08-05T23:02:30.218357",
+      "estimated_duration": "30-60 minutes",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance",
+        "Coordinate with database team",
+        "Prepare rollback database snapshot",
+        "Schedule on-call engineer availability"
+      ],
+      "rollback_plan": {
+        "method": "automated_snapshot",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [
+          "HIPAA",
+          "PCI-DSS",
+          "SOX"
+        ],
+        "compliance_requirements": [
+          "assigned_security_responsibility",
+          "security_risk_assessment",
+          "access_controls",
+          "vulnerability_management",
+          "monitoring",
+          "regular_testing",
+          "change_management"
+        ],
+        "documentation_needed": true,
+        "max_timeline": "within_30_days"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218743",
+        "audit_id": "0cb24b2e-5679-4d28-963c-0877b8c7b0eb",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    },
+    {
+      "cve_id": "CVE-2024-0003",
+      "severity": "medium",
+      "risk_score": 45,
+      "dependency_risk": "low",
+      "rollback_difficulty": "easy",
+      "llm_reasoning": "Information disclosure vulnerability with limited impact",
+      "target_system": {
+        "id": "SYS-004",
+        "name": "Staging Environment",
+        "type": "staging",
+        "environment": "staging",
+        "criticality": "medium",
+        "maintenance_window": {
+          "day": "weekdays",
+          "start_time": "18:00",
+          "end_time": "08:00",
+          "timezone": "UTC"
+        },
+        "affected_services": [
+          "staging_tests",
+          "qa_validation"
+        ]
+      },
+      "scheduled_time": "2025-08-03T23:02:30.218368",
+      "estimated_duration": "30-60 minutes",
+      "prerequisites": [
+        "Verify system backup completed",
+        "Confirm maintenance window availability",
+        "Notify stakeholders of scheduled maintenance"
+      ],
+      "rollback_plan": {
+        "method": "package_rollback",
+        "estimated_rollback_time": "15-30 minutes",
+        "rollback_triggers": [
+          "Service unavailability > 5 minutes",
+          "Error rate > 5%",
+          "Manual operator decision"
+        ],
+        "validation_steps": [
+          "Verify service startup",
+          "Check application health endpoints",
+          "Validate core functionality"
+        ]
+      },
+      "compliance_metadata": {
+        "applicable_frameworks": [],
+        "compliance_requirements": [],
+        "documentation_needed": false,
+        "max_timeline": "risk_based"
+      },
+      "audit_trail": {
+        "created_at": "2025-08-01T23:02:30.218766",
+        "audit_id": "752f6a1d-a8f9-4ddf-bacd-f4760d7265b1",
+        "tagged_by": "AuditorAgent",
+        "version": "1.0"
+      }
+    }
+  ],
+  "plan_metadata": {
+    "generated_at": "2025-08-01T23:02:30.218777",
+    "total_patches": 9,
+    "compliance_summary": {
+      "frameworks_involved": [
+        "ISO27001",
+        "HIPAA",
+        "SOX",
+        "PCI-DSS"
+      ],
+      "patches_requiring_documentation": 8,
+      "total_compliance_requirements": 4
+    }
+  },
+  "audit_id": "e0b09bd2-756c-467f-86b2-51d375a59168"
+}

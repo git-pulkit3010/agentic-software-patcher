@@ -19,5 +19,10 @@
     "severity": "medium",
     "affected_software": ["Apache HTTP Server 2.4.54"],
     "published_date": "2025-07-02"
+  }, 
+  {
+    "id": "CVE-2023-123401",
+    "description": "NGINX vulnerability in versions <1.25.0",
+    "severity": "high"
   }
 ]

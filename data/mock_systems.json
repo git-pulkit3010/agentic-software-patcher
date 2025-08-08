@@ -1,0 +1,61 @@
+{
+    "systems": [
+      {
+        "id": "SYS-001",
+        "name": "Web Server Cluster",
+        "type": "web_server",
+        "environment": "production",
+        "criticality": "high",
+        "maintenance_window": {
+          "day": "sunday",
+          "start_time": "02:00",
+          "end_time": "06:00",
+          "timezone": "UTC"
+        },
+        "affected_services": ["web_frontend", "api_gateway"]
+      },
+      {
+        "id": "SYS-002", 
+        "name": "Database Primary",
+        "type": "database",
+        "environment": "production",
+        "criticality": "critical",
+        "maintenance_window": {
+          "day": "saturday",
+          "start_time": "01:00",
+          "end_time": "04:00",
+          "timezone": "UTC"
+        },
+        "affected_services": ["user_data", "transactions"]
+      },
+      {
+        "id": "SYS-003",
+        "name": "Development Servers",
+        "type": "development",
+        "environment": "development", 
+        "criticality": "low",
+        "maintenance_window": {
+          "day": "any",
+          "start_time": "00:00",
+          "end_time": "23:59",
+          "timezone": "UTC"
+        },
+        "affected_services": ["dev_testing"]
+      },
+      {
+        "id": "SYS-004",
+        "name": "Staging Environment",
+        "type": "staging",
+        "environment": "staging",
+        "criticality": "medium",
+        "maintenance_window": {
+          "day": "weekdays",
+          "start_time": "18:00", 
+          "end_time": "08:00",
+          "timezone": "UTC"
+        },
+        "affected_services": ["staging_tests", "qa_validation"]
+      }
+    ]
+  }
+  

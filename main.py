@@ -11,7 +11,7 @@ def main():
     print("=== Agentic Patch Management System - Phase 3 Demo ===\n")
 
     # Initialize the patch plan generator with LLM support
-    generator = PatchPlanGenerator(use_llm=True)
+    generator = PatchPlanGenerator(use_llm=False, deploy_mode = 'production')
     
     # Initialize Phase 3 agents
     approval_agent = HumanApprovalAgent()
@@ -56,7 +56,8 @@ def main():
         
         print("📋 Generated explanations:")
         for explanation_type, content in explanations.items():
-            print(f" - {explanation_type.replace('_', ' ').title()}: {len(content)} characters")
+            print(f"\n--- {explanation_type.replace('_', ' ').title()} ---")
+            print(content)
         
         # Save complete plan to file for inspection
         output_file = "backend/data/complete_patch_plan_phase3.json"
