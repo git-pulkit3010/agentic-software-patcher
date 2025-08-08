@@ -1,8 +1,9 @@
 .env
 rag_store/
-__pycache__/
 orchestrator/__pycache__/
 data/approvals
 data/audit_logs
 data/received_plans
 backend/data
+__pycache__/
+*.pyc
